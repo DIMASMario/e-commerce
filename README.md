@@ -268,11 +268,6 @@ Project ini menggunakan [MIT License](LICENSE).
 - **Fattah** - Design Director  
 - **Farhan** - Production Manager
 
-## 📞 Support
-
-Untuk bantuan teknis atau pertanyaan:
-- Email: support@sokincek.com
-- Website: [sokincek.com](http://sokincek.com)
 
 ## 🔄 Changelog
 
@@ -284,12 +279,7 @@ Untuk bantuan teknis atau pertanyaan:
 - ✅ Email notifications
 - ✅ Responsive design
 
-### Roadmap
-- [ ] Payment gateway integration
-- [ ] Advanced analytics
-- [ ] Mobile app
-- [ ] Multi-language support
-- [ ] Social media integration
+
 
 ---
 
