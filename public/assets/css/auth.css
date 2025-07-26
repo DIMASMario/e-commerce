@@ -1,0 +1,80 @@
+/**
+ * Socksin - Authentication Pages CSS
+ */
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.auth-page {
+    background-color: #4a6fff;
+    background-image: linear-gradient(135deg, #4a6fff 0%, #6a11cb 100%);
+    min-height: 100vh;
+}
+
+.auth-title {
+    color: #343a40;
+    font-weight: 600;
+}
+
+.auth-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.auth-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Form Controls */
+.form-control {
+    border: 1px solid #e1e1e1;
+    padding: 12px;
+    height: auto;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(74, 111, 255, 0.2);
+    border-color: #4a6fff;
+}
+
+.input-group-text {
+    background-color: #f5f7fb;
+    border: 1px solid #e1e1e1;
+    color: #6c757d;
+}
+
+.btn-primary {
+    background-color: #4a6fff;
+    border-color: #4a6fff;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3a5be0;
+    border-color: #3a5be0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Password Toggle */
+.toggle-password {
+    cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .auth-card {
+        margin: 0 15px;
+    }
+}

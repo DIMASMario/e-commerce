@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Database\Migrations;
+
+use CodeIgniter\Database\Migration;
+
+class AddDescriptionAndCreatedAtToCategories extends Migration
+{
+    public function up()
+    {
+        $fields = [
+            'description' => [
+                'type' => 'TEXT',
+                'null' => true,
+                'after' => 'name',
+            ],
+            'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'after' => 'description',
+            ],
+        ];
+        $this->forge->addColumn('categories', $fields);
+    }
+
+    public function down()
+    {
+        $this->forge->dropColumn('categories', ['description', 'created_at']);
+    }
+}
