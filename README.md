@@ -258,15 +258,8 @@ mysqldump -u username -p database_name > backup.sql
 4. Push ke branch (`git push origin feature/AmazingFeature`)
 5. Buat Pull Request
 
-## 📝 License
 
-Project ini menggunakan [MIT License](LICENSE).
 
-## 👥 Tim Pengembang
-
-- **Gianniva Abiel** - Founder & CEO
-- **Fattah** - Design Director  
-- **Farhan** - Production Manager
 
 
 ## 🔄 Changelog
