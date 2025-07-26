@@ -1,60 +1,296 @@
-# CodeIgniter 4 Framework
+# Sokincek - Website E-Commerce Khusus Penjualan Kaos Kaki
 
-## What is CodeIgniter?
+Sokincek adalah platform e-commerce yang berfokus pada penjualan kaos kaki premium dengan kualitas tinggi. Website ini dibangun menggunakan CodeIgniter 4 dan menyediakan sistem lengkap untuk admin, merchant, dan user dengan fitur pembayaran manual dan notifikasi email otomatis.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## 🚀 Fitur Utama
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+### 👤 User (Pelanggan)
+- Registrasi dan login
+- Edit profil pengguna
+- Katalog produk kaos kaki dengan filter kategori
+- Pencarian produk
+- Keranjang belanja
+- Sistem checkout lengkap
+- Upload bukti pembayaran
+- Tracking status pesanan
+- Riwayat transaksi
+- Wishlist produk
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+### 🛍️ Merchant (Penjual)
+- Dashboard merchant
+- CRUD produk kaos kaki
+- Manajemen toko
+- Lihat dan kelola pesanan masuk
+- Update status pesanan
+- Statistik penjualan
+- Profil toko
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### 🛠️ Admin
+- Dashboard admin lengkap
+- Manajemen user dan merchant (CRUD, ban/unban)
+- Verifikasi pembayaran
+- Laporan transaksi dan penjualan
+- Kelola kategori produk
+- Sistem notifikasi email otomatis
+- Monitoring semua aktivitas
 
-## Important Change with index.php
+## 🛠️ Teknologi yang Digunakan
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+- **Framework**: CodeIgniter 4
+- **Database**: MySQL
+- **Frontend**: Bootstrap 5
+- **Icons**: Bootstrap Icons
+- **Email**: PHPMailer/SMTP
+- **Authentication**: Manual login/logout
+- **File Upload**: Bukti pembayaran
+- **Architecture**: MVC Pattern
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## 📋 Persyaratan Sistem
 
-**Please** read the user guide for a better explanation of how CI4 works!
+- PHP 8.0 atau lebih tinggi
+- MySQL 5.7 atau lebih tinggi
+- Composer
+- Web server (Apache/Nginx)
+- Ekstensi PHP yang diperlukan:
+  - php-curl
+  - php-gd
+  - php-intl
+  - php-json
+  - php-mbstring
+  - php-mysqlnd
 
-## Repository Management
+## 🔧 Instalasi
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+### 1. Clone Repository
+```bash
+git clone [repository-url]
+cd sokincek_project
+```
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### 2. Install Dependencies
+```bash
+composer install
+```
 
-## Contributing
+### 3. Konfigurasi Environment
+```bash
+cp .env.example .env
+```
 
-We welcome contributions from the community.
+Edit file `.env` dan sesuaikan konfigurasi database dan email:
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+```env
+# Database
+database.default.hostname = localhost
+database.default.database = capstone_project
+database.default.username = your_username
+database.default.password = your_password
+database.default.DBDriver = MySQLi
 
-## Server Requirements
+# Email Configuration
+mail.fromEmail = noreply@socksin.com
+mail.fromName  = Socksin Notifikasi
+mail.protocol = smtp
+mail.SMTPHost = live.smtp.mailtrap.io
+mail.SMTPUser = api
+mail.SMTPPass = your_smtp_password
+mail.SMTPPort = 587
+mail.SMTPCrypto = tls
+mail.mailType = html
+```
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+### 4. Setup Database
+```bash
+# Import database
+mysql -u username -p database_name < capstone_project.sql
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+# Atau jalankan migrasi (jika tersedia)
+php spark migrate
+php spark db:seed DatabaseSeeder
+```
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+### 5. Set Permissions
+```bash
+chmod -R 755 writable/
+chmod -R 755 public/uploads/
+```
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+### 6. Jalankan Aplikasi
+```bash
+php spark serve
+```
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Akses aplikasi di `http://localhost:8080`
+
+## 📁 Struktur Database
+
+### Tabel Utama:
+
+#### users
+```sql
+- id (PK)
+- name
+- email
+- password
+- role (admin/user/merchant)
+- created_at
+```
+
+#### products
+```sql
+- id (PK)
+- merchant_id (FK)
+- name
+- description
+- price
+- stock
+- image
+- category_id (FK)
+- created_at
+```
+
+#### orders
+```sql
+- id (PK)
+- user_id (FK)
+- total_price
+- status (pending/paid/shipped/canceled)
+- created_at
+```
+
+#### payments
+```sql
+- id (PK)
+- order_id (FK)
+- user_id (FK)
+- payment_proof (image)
+- status
+- created_at
+```
+
+[Lihat ERD lengkap di dokumentasi]
+
+## 🎯 Panduan Penggunaan
+
+### Admin
+1. Login dengan akun admin
+2. Kelola user dan merchant dari dashboard
+3. Verifikasi pembayaran yang masuk
+4. Monitor laporan penjualan
+5. Kelola kategori produk
+
+### Merchant
+1. Daftar sebagai merchant
+2. Lengkapi profil toko
+3. Tambah produk kaos kaki
+4. Kelola pesanan masuk
+5. Update status pengiriman
+
+### User
+1. Registrasi akun baru
+2. Browse katalog kaos kaki
+3. Tambah produk ke keranjang
+4. Checkout dan upload bukti pembayaran
+5. Track status pesanan
+
+## 📧 Sistem Notifikasi Email
+
+Setiap kali user mengupload bukti pembayaran, sistem akan:
+- Mengirim email notifikasi ke admin
+- Subject: "[Pembayaran Baru] Order ID #123 oleh User X"
+- Berisi link ke dashboard admin dan detail pesanan
+
+## 🔐 Keamanan
+
+- Password hashing menggunakan PHP password_hash()
+- Validasi input pada semua form
+- Protection terhadap SQL injection
+- File upload security untuk bukti pembayaran
+- Role-based access control
+
+## 📱 Responsive Design
+
+Website fully responsive menggunakan Bootstrap 5:
+- Mobile-first approach
+- Optimized untuk semua ukuran layar
+- Touch-friendly interface
+- Fast loading dengan optimized assets
+
+## 🎨 Fitur UI/UX
+
+- Modern dan clean design
+- Smooth animations dan transitions
+- User-friendly navigation
+- Intuitive checkout process
+- Professional product showcase
+- Dark/light mode support (opsional)
+
+## 🔧 Maintenance
+
+### Update Dependencies
+```bash
+composer update
+```
+
+### Clear Cache
+```bash
+php spark cache:clear
+```
+
+### Database Backup
+```bash
+mysqldump -u username -p database_name > backup.sql
+```
+
+## 📊 Monitoring & Analytics
+
+- Sales dashboard dengan grafik
+- User activity tracking
+- Inventory management
+- Revenue reports
+- Popular products analytics
+
+## 🤝 Contributing
+
+1. Fork repository
+2. Buat feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+## 📝 License
+
+Project ini menggunakan [MIT License](LICENSE).
+
+## 👥 Tim Pengembang
+
+- **Gianniva Abiel** - Founder & CEO
+- **Fattah** - Design Director  
+- **Farhan** - Production Manager
+
+## 📞 Support
+
+Untuk bantuan teknis atau pertanyaan:
+- Email: support@sokincek.com
+- Website: [sokincek.com](http://sokincek.com)
+
+## 🔄 Changelog
+
+### v1.0.0 (Current)
+- ✅ Initial release
+- ✅ Basic e-commerce functionality
+- ✅ User, Merchant, Admin roles
+- ✅ Payment verification system
+- ✅ Email notifications
+- ✅ Responsive design
+
+### Roadmap
+- [ ] Payment gateway integration
+- [ ] Advanced analytics
+- [ ] Mobile app
+- [ ] Multi-language support
+- [ ] Social media integration
+
+---
+
+**Sokincek** - *Kualitas Premium untuk Setiap Langkah* 🧦
